@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { sensorService } from "@/services/sensors.service";
+import { sensorService } from "@/services/firebase/sensors.service";
 
 export async function GET() {
   try {

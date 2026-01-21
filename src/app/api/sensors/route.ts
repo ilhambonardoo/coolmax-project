@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { sensorService } from "@/services/sensors.service";
+import { sensorService } from "@/services/firebase/sensors.service";
 import { ResponseError } from "@/lib/errors/response-error";
 
 export async function GET() {
