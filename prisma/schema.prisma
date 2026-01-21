@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique @db.VarChar(100)
+  password  String   @db.VarChar(255)
+  email     String   @unique @db.VarChar(255)
+  name      String   @db.VarChar(255)
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  comment Comment[]
+  activtyLogs ActivityLog[]
+}
+
+model Comment {
+  id        String    @id @default(cuid())
+  content   String    @db.Text
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+}
+
+model ActivityLog {
+  id        String   @id @default(cuid())
+  action    String   @db.VarChar(100)
+  details   String?  @db.VarChar(500)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
