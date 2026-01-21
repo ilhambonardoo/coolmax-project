@@ -1,6 +1,6 @@
 import { ResponseError } from "@/lib/errors/response-error";
 import { db } from "./firebase.service";
-import { SensorRecord, SensorsData } from "@/types/sensors";
+import { SensorRecord, SensorsData } from "@/interfaces/sensors";
 import {
   MAX_POWER_WATT,
   MIN_EFFECTIVE_PWM_PERCENT,
