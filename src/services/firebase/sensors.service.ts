@@ -1,6 +1,6 @@
 import { ResponseError } from "@/lib/errors/response-error";
 import { db } from "./firebase.service";
-import { SensorRecord, SensorsData } from "@/interfaces/sensors";
+import { SensorRecord, SensorsData } from "@/lib/interfaces/sensors";
 import {
   MAX_POWER_WATT,
   MIN_EFFECTIVE_PWM_PERCENT,
@@ -76,7 +76,7 @@ export class SensorService {
 
   private async calculateAndRecordEnergy(
     data: SensorsData,
-    timeDiffHours: number
+    timeDiffHours: number,
   ) {
     const pwmClamped = Math.max(0, Math.min(data.pwm, MOTOR_SPECS.MAX_PWM));
     const pwmPercent = pwmClamped / MOTOR_SPECS.MAX_PWM;
